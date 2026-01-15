@@ -277,6 +277,9 @@ Proiect_Calitate_Aer/
 - 📘 [Usage Guide](docs/USAGE.md) - Ghid complet de utilizare
 - 🤝 [Contributing Guidelines](CONTRIBUTING.md) - Cum să contribui
 - 📝 [Changelog](CHANGELOG.md) - Istoric versiuni
+- 🗺️ [Roadmap](ROADMAP.md) - Planuri de dezvoltare viitoare
+- 🛡️ [Security Policy](SECURITY.md) - Politică de securitate
+- 📜 [Code of Conduct](CODE_OF_CONDUCT.md) - Cod de conduită
 
 ---
 
