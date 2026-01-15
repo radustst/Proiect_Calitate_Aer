@@ -9,163 +9,58 @@ Ianuarie 2026
 
 ---
 
-# Cuprins
-
-1. 📋 Introducere & Motivație
-2. 🎯 Obiective
-3. 🛠️ Tehnologii Utilizate
-4. 🏗️ Arhitectura Proiectului
-5. 📊 Funcționalități
-6. 🧠 Modelul ML
-7. ⚠️ Provocări & Soluții
-8. 📈 Rezultate
-9. 🔮 Viitor & Concluzii
-
----
-
-# 📋 Introducere
+# Ce am creat?
 
 ## Problema
+**Poluarea aerului** afectează sănătatea noastră în fiecare zi
+- PM2.5 = particule foarte mici în aer (< 2.5 micrometri)
+- Cauze: mașini, fabrici, fum
+- **Impact**: probleme respiratorii și cardiovasculare
 
-- **Poluarea aerului** - o problemă globală de sănătate publică
-- Particule PM2.5 = particule fine < 2.5 micrometri
-- Cauze: trafic, industrie, încălzire, condiții meteo
-- **Impact**: boli respiratorii, cardiovasculare, mii de decese anual
+## Soluția
+✨ **Dashboard web** care prezice calitatea aerului pentru următoarele 24 de ore
 
-## Soluția Noastră
-
-**Aplicație web** pentru predicția nivelului PM2.5 în următoarele 24 de ore
-
----
-
-# 🎯 Obiective Proiect
-
-## Obiective Principale
-
-✅ **Colectare date** - PM2.5 și meteo din surse publice
-✅ **Model ML** - Predicție precisă bazată pe Random Forest
-✅ **Vizualizare** - Dashboard interactiv și user-friendly
-✅ **Alertare** - Categorii calitate aer conform EPA
-
-## Beneficii
-
-- 🏃 **Cetățeni** - Planificare activități în aer liber
-- 🏥 **Pacienți** - Protecție pentru persoane cu afecțiuni respiratorii
-- 🌍 **Comunitate** - Conștientizare poluare
+## De ce este util?
+- Planifici când să ieși la alergat
+- Protejezi persoanele vulnerabile
+- Vezi când aerul este mai curat
 
 ---
 
-# 🛠️ Stack Tehnologic
+# 🛠️ Cum funcționează?
 
-## Backend & Data Processing
+## Tehnologii folosite
 
-| Tehnologie | Utilizare |
-|------------|-----------|
-| **Python 3.8+** | Limbaj principal |
-| **pandas** | Procesare și analiză date |
-| **NumPy** | Calcule numerice |
-| **requests** | Comunicare API-uri |
+**Python** - Limbajul principal
+- **pandas** - Prelucrare date
+- **scikit-learn** - Inteligență artificială
+- **Streamlit** - Interface web
+- **Plotly** - Grafice colorate
 
-## Machine Learning
-
-| Tehnologie | Utilizare |
-|------------|-----------|
-| **scikit-learn** | Framework ML |
-| **Random Forest** | Algoritm predicție |
-| **joblib** | Salvare/încărcare model |
+**Surse de date**
+- **OpenAQ** - Date despre poluare
+- **OpenWeatherMap** - Date meteo (temperatură, vânt, etc.)
 
 ---
 
-# 🛠️ Stack Tehnologic (cont.)
+# 🏗️ Cum am împărțit munca?
 
-## Frontend & Vizualizare
+## 3 Module Principale
 
-| Tehnologie | Utilizare |
-|------------|-----------|
-| **Streamlit** | Framework dashboard web |
-| **Plotly** | Grafice interactive |
-| **Plotly Express** | Vizualizări rapide |
+**1. Colectare Date** (Berciu Antonio)
+- Preia date despre poluare de pe internet
+- Preia date meteo (temperatură, vânt)
+- Salvează tot într-un fișier CSV
 
-## APIs & Date
+**2. Model Inteligență Artificială** (Munteanu Radu)
+- Învață din datele istorice
+- Prezice poluarea pentru următoarele 24h
+- Verifică cât de precise sunt predicțiile
 
-| API | Scop |
-|-----|------|
-| **OpenAQ API** | Date PM2.5 globale |
-| **OpenWeatherMap** | Date meteo în timp real |
-
----
-
-# 🏗️ Arhitectura Proiectului
-
-## Componente Principale
-
-```
-┌─────────────────┐
-│   OpenAQ API    │ ──┐
-└─────────────────┘   │
-                      ▼
-┌─────────────────┐   ┌──────────────────┐
-│ OpenWeather API │──▶│ Data Collector   │
-└─────────────────┘   │ (Berciu Antonio) │
-                      └──────────────────┘
-                              │
-                              ▼
-                      ┌──────────────────┐
-                      │  Training Data   │
-                      │    (CSV)         │
-                      └──────────────────┘
-                              │
-                              ▼
-                      ┌──────────────────┐
-                      │   ML Model       │
-                      │ (Munteanu Radu)  │
-                      │ Random Forest    │
-                      └──────────────────┘
-                              │
-                              ▼
-                      ┌──────────────────┐
-                      │   Dashboard      │
-                      │ (Roman Silviu)   │
-                      │   Streamlit      │
-                      └──────────────────┘
-```
-
----
-
-# 📊 Funcționalități - Dashboard
-
-## Tab 1: Predicții 🔮
-
-- Generare predicții PM2.5 pentru 24h
-- Vizualizare condiții meteo curente
-- Grafic interactiv cu zone AQI color-coded
-- Metrici: curent, medie, maxim, minim
-- Tabel detaliat predicții orare
-
-## Tab 2: Date Istorice 📈
-
-- Încărcare date PM2.5 istorice (1-30 zile)
-- Grafice trend temporal
-- Distribuție valori (histograme)
-- Statistici descriptive
-
----
-
-# 📊 Funcționalități (cont.)
-
-## Tab 3: Analiză 📊
-
-- Corelație PM2.5 vs Temperatură
-- Matrice corelație factori meteo
-- Scatter plots interactive
-- Identificare pattern-uri
-
-## Tab 4: Despre ℹ️
-
-- Informații proiect
-- Metodologie
-- Categorii EPA
-- Echipa și tehnologii
+**3. Interface Web** (Roman Silviu)
+- Dashboard frumos și ușor de folosit
+- Grafice colorate și interactive
+- Predicții + Date istorice + Analize
 
 ---
 
@@ -222,45 +117,22 @@ Top 3 features: **temperatură**, **umiditate**, **ora zilei**
 
 ### Soluția
 ✅ **Fallback la date simulate** - generator de date realiste
-✅ **Rate limiting** - pauze între request-uri API
-✅ **Caching** - salvare date colectate în CSV
-✅ **Error handling** - gestionare elegantă erori API
+✅ **Rate limide Predicție
 
----
+## Cum funcționează "creierul" aplicației?
 
-# ⚠️ Provocări & Soluții (cont.)
+**Random Forest** = mulți "arbori de decizie" care votează împreună
 
-## 🔴 Provocare 2: Calitatea Datelor
+**Ce analizează:**
+- Temperatura
+- Umiditatea
+- Viteza vântului
+- Ora din zi
+- Luna din an
 
-### Problema
-- Valori PM2.5 lipsă sau eronate
-- Date meteo incomplete
-- Diferențe timezone între surse
-- Outliers extreme în date
+**Rezultat:** Prezice poluarea pentru următoarele 24 de ore
 
-### Soluția
-✅ **Data cleaning** - eliminare valori NULL
-✅ **Outlier detection** - clip valori extreme
-✅ **Timestamp normalization** - conversie UTC
-✅ **Imputation** - completare valori lipsă cu medie/mediana
-
----
-
-# ⚠️ Provocări & Soluții (cont.)
-
-## 🔴 Provocare 3: Performanța Modelului
-
-### Problema
-- Underfitting pe date limitate
-- Overfitting pe seturi mici de date
-- Predicții imprecise pentru condiții extreme
-- Timp lung de antrenare
-
-### Soluția
-✅ **Hyperparameter tuning** - optimizare Random Forest
-✅ **Feature engineering** - adăugare features temporale
-✅ **Data augmentation** - generare date sintetice
-✅ **Ensemble methods** - combinare predicții
+**Performanță:** ~85% acuratețe pe date de test
 ✅ **Cross-validation** - validare robustă
 
 ---
@@ -344,85 +216,26 @@ Top 3 features: **temperatură**, **umiditate**, **ora zilei**
 ## Funcționalități Implementate
 
 | Modul | Student | Status |
-|-------|---------|--------|
-| Data Collection | Berciu Antonio | ✅ Complete |
-| ML Model | Munteanu Radu | ✅ Complete |
-| Dashboard | Roman Silviu | ✅ Complete |
-| Testing | Student 4 | ✅ Complete |
-| Documentation | Student 4 | ✅ Complete |
+|----Ce am realizat?
 
-## Repository GitHub
+## Aplicație funcțională cu:
 
-✅ Professional README cu badges
-✅ CI/CD cu GitHub Actions
-✅ Issue & PR templates
-✅ Code of Conduct & Security Policy
+✅ **Predicții** pentru următoarele 24 de ore
+✅ **Grafice colorate** și ușor de înțeles
+✅ **Categorii calitate aer** (Bună, Moderată, Nesănătoasă, etc.)
+✅ **Date istorice** și analiză
 
----
+## Performanță:
 
-# 📊 Demo - Screenshots
+- Precizie ~85% pe date de test
+- Răspuns rapid (< 2 secunde)
+- 3 module separate care funcționează împreună
+- 10+ teste pentru a verifica că totul merge bine
 
-## Dashboard Principal
+## Bonus:
 
-```
-┌─────────────────────────────────────────────┐
-│  🌍 Predicție Calitate Aer                  │
-├─────────────────────────────────────────────┤
-│  Predicții | Date Istorice | Analiză | Despre│
-├─────────────────────────────────────────────┤
-│                                              │
-│  📊 PM2.5 Curent: 28.5 μg/m³  🟡 Moderată   │
-│                                              │
-│  📈 [Grafic interactiv 24h predictions]     │
-│                                              │
-│  ┌────────┬────────┬────────┬────────┐      │
-│  │ Curent │ Medie  │ Maxim  │ Minim  │      │
-│  │ 28.5   │ 32.1   │ 45.3   │ 18.7   │      │
-│  └────────┴────────┴────────┴────────┘      │
-└─────────────────────────────────────────────┘
-```
-
----
-
-# 🎓 Lecții Învățate
-
-## Tehnic
-
-✅ **API Integration** - lucru cu API-uri externe și rate limiting
-✅ **Machine Learning** - proces complet ML pipeline
-✅ **Data Engineering** - cleaning, transformation, feature engineering
-✅ **Web Development** - Streamlit și vizualizări interactive
-✅ **Testing** - pytest și best practices
-
-## Soft Skills
-
-✅ **Colaborare** - Git workflow și code review
-✅ **Documentație** - importanța documentării clare
-✅ **Problem Solving** - debug și troubleshooting
-✅ **Time Management** - sprint planning și deadlines
-
----
-
-# 🔮 Dezvoltări Viitoare
-
-## Version 1.1 (Planificat Q1 2026)
-
-🔹 Multiple locations support
-🔹 Email/SMS notifications
-🔹 Data caching pentru performance
-🔹 Export rapoarte PDF/CSV
-🔹 Dark mode UI
-
-## Version 2.0 (Planificat Q3 2026)
-
-🔹 Mobile app (React Native)
-🔹 RESTful API
-🔹 7-day forecast
-🔹 Multiple pollutants (PM10, NO2, O3)
-🔹 AI health recommendations
-
-Vezi [ROADMAP.md](../ROADMAP.md) pentru detalii
-
+✅ Documentație completă pe GitHub
+✅ Cod bine organizat și comentat
 ---
 
 # 🏆 Concluzii
@@ -462,41 +275,32 @@ Vezi [ROADMAP.md](../ROADMAP.md) pentru detalii
 
 ## APIs & Date
 
-- [OpenAQ](https://openaq.org/) - Date globale calitate aer
-- [OpenWeatherMap](https://openweathermap.org/api) - Date meteo
-- [EPA AQI](https://www.airnow.gov/aqi/) - Standarde calitate aer
+- [OpCe urmează?
 
-## Tehnologii
+## Îmbunătățiri planificate:
 
-- [scikit-learn](https://scikit-learn.org/) - Machine Learning
-- [Streamlit](https://streamlit.io/) - Web framework
-- [Plotly](https://plotly.com/python/) - Vizualizări
-
-## Repository
-
-🔗 **GitHub**: https://github.com/radustst/Proiect_Calitate_Aer
+🔹 Predicții pentru mai multe orașe
+🔹 Notificări prin email când aerul devine periculos
+🔹 Export rapoarte PDF
+🔹 Predicții pentru 7 zile (nu doar 24h)
+🔹 Aplicație pentru telefon
 
 ---
 
-# ❓ Întrebări?
+# 🎓 Ce am învățat?
 
-## Contact
+## Tehnic
+- Cum să lucrezi cu API-uri și date din exterior
+- 🙏 Mulțumim!
 
-📧 **Email**: [your-email@example.com]
+## Întrebări?
+
 💻 **GitHub**: https://github.com/radustst/Proiect_Calitate_Aer
-📝 **Documentation**: Vezi repository pentru detalii tehnice
 
 ---
 
-# 🙏 Mulțumiri!
+**Echipa 421 B**
 
-**Vă mulțumim pentru atenție!**
+Berciu Antonio | Munteanu Radu | Roman Silviue |
 
----
-
-## Echipa 421 B
-**Berciu Antonio | Munteanu Radu | Roman Silviu**
-
-🌍 Împreună pentru un aer mai curat!
-
-Ianuarie 2026
+**Toți:** Documentație, teste, rezolvare probleme împreună!
