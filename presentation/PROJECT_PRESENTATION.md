@@ -64,60 +64,7 @@ Ianuarie 2026
 
 ---
 
-# 🧠 Modelul Machine Learning
-
-## Arhitectură
-
-- **Algoritm**: Random Forest Regressor
-- **Estimatori**: 100 arbori de decizie
-- **Max Depth**: 15 niveluri
-- **Features**: 9 variabile input
-
-## Features (Input)
-
-| Categorie | Features |
-|-----------|----------|
-| **Meteo** | temperatură, umiditate, presiune, vânt (viteză, direcție), nebulozitate |
-| **Temporale** | ora zilei, zi săptămână, lună |
-
-**Target**: PM2.5 (μg/m³)
-
----
-
-# 🧠 Modelul ML - Performanță
-
-## Validare
-
-- **Split**: 80% Train / 20% Test
-- **Scaling**: StandardScaler pentru normalizare
-- **Cross-validation**: Train/Test split
-
-## Metrici de Evaluare
-
-| Metrică | Descriere | Valoare Țintă |
-|---------|-----------|---------------|
-| **RMSE** | Root Mean Squared Error | < 10 μg/m³ |
-| **MAE** | Mean Absolute Error | < 8 μg/m³ |
-| **R²** | Coefficient of Determination | > 0.85 |
-
-## Feature Importance
-
-Top 3 features: **temperatură**, **umiditate**, **ora zilei**
-
----
-
-# ⚠️ Provocări & Soluții
-
-## 🔴 Provocare 1: Limitări API
-
-### Problema
-- OpenAQ API - date incomplete sau lipsă pentru România
-- OpenWeatherMap - limită 60 request-uri/min (cont gratuit)
-- Lipsă date istorice pentru anumite locații
-
-### Soluția
-✅ **Fallback la date simulate** - generator de date realiste
-✅ **Rate limide Predicție
+# 🧠 Modelul de Predicție
 
 ## Cum funcționează "creierul" aplicației?
 
@@ -133,90 +80,75 @@ Top 3 features: **temperatură**, **umiditate**, **ora zilei**
 **Rezultat:** Prezice poluarea pentru următoarele 24 de ore
 
 **Performanță:** ~85% acuratețe pe date de test
-✅ **Cross-validation** - validare robustă
 
 ---
 
-# ⚠️ Provocări & Soluții (cont.)
+# ⚠️ Probleme întâlnite și soluții
 
-## 🔴 Provocare 4: Integrare Streamlit
+## 🔴 Problema 1: Date incomplete
 
-### Problema
-- Session state management complex
-- Rerun-uri frecvente (performance)
-- Layout responsive pe diferite ecrane
-- Încărcare lentă date mari
+**Ce s-a întâmplat:**
+- Site-urile de unde luam datele nu aveau mereu informații
+- Uneori lipseau date pentru București
+- Aveam limite la câte date puteam lua pe minut
 
-### Soluția
-✅ **st.session_state** - persistență date între rerun-uri
-✅ **@st.cache_data** - caching rezultate (planificat)
-✅ **Layout optimization** - columns și containers
-✅ **Lazy loading** - încărcare progresivă
+**Cum am rezolvat:**
+- Am creat date simulate realiste când lipseau cele reale
+- Am pus pauze între request-uri ca să nu depășim limita
+- Am salvat datele odată luate, ca să nu le mai cerem din nou
 
 ---
 
-# ⚠️ Provocări & Soluții (cont.)
+# ⚠️ Probleme întâlnite și soluții (cont.)
 
-## 🔴 Provocare 5: Colaborare în Echipă
+## 🔴 Problema 2: Modelul învăța greșit
 
-### Problema
-- Lucru simultan pe același cod
-- Conflicte Git merge
-- Dependințe între module
-- Standarde cod diferite
+**Ce s-a întâmplat:**
+- Modelul nu știa să prezică bine cu puține date
+- Uneori "memoriza" prea mult și nu generaliza
+- Predicțiile erau inexacte pentru situații extreme
 
-### Soluția
-✅ **Git branches** - feature branches separate
-✅ **Code review** - review înainte de merge
-✅ **Documentație** - docstrings și comentarii
-✅ **Modularizare** - separare clară responsabilități
-✅ **Testing** - pytest pentru verificare funcționalități
+**Cum am rezolvat:**
+- Am generat date sintetice pentru antrenare
+- Am ajustat parametrii modelului (mai mulți arbori, mai adânci)
+- Am adăugat informații despre ora zilei și luna
 
 ---
 
-# ⚠️ Provocări & Soluții (cont.)
+# ⚠️ Probleme întâlnite și soluții (cont.)
 
-## 🔴 Provocare 6: Deployment & Environment
+## 🔴 Problema 3: Colaborare în echipă
 
-### Problema
-- Dependențe diferite (Windows/Linux/Mac)
-- Versiuni Python incompatibile
-- Chei API expuse accidental
-- Fișiere mari (modele) în Git
+**Ce s-a întâmplat:**
+- Când lucram simultan, codul se suprapunea
+- Aveam conflicte când încercam să combinăm munca
+- Fiecare scria cod puțin diferit
 
-### Soluția
-✅ **requirements.txt** - dependențe fixate
-✅ **Python 3.8+** - compatibilitate cross-platform
-✅ **.env files** - management sigur chei API
-✅ **.gitignore** - excludere fișiere sensibile
-✅ **Virtual environments** - izolare dependențe
+**Cum am rezolvat:**
+- Am folosit Git branches (fiecare pe ramura lui)
+- Am făcut code review înainte de a combina codul
+- Am scris documentație și comentarii clare
+- Am împărțit proiectul în module separate
 
 ---
 
-# 📈 Rezultate & Realizări
+# ⚠️ Probleme întâlnite și soluții (cont.)
 
-## Metrici Tehnice
+## 🔴 Problema 4: Interface-ul se comporta ciudat
 
-✅ **Model accuracy**: R² > 0.85 pe date simulate
-✅ **Predicții**: 24h forecast cu update orar
-✅ **Response time**: < 2s pentru generare predicții
-✅ **Code coverage**: ~70% teste unitare
+**Ce s-a întâmplat:**
+- Aplicația "uita" datele când reîncărcam pagina
+- Se reîncărca prea des și era lentă
+- Graficele nu arătau bine pe toate ecranele
 
-## Livrabile
-
-✅ **3 module Python** complete și funcționale
-✅ **Dashboard interactiv** cu 4 secțiuni
-✅ **10+ teste** unitare și integrare
-✅ **Documentație completă** (README, TECHNICAL, USAGE)
+**Cum am rezolvat:**
+- Am folosit "session state" să păstreze datele
+- Am organizat layout-ul mai eficient
+- Am testat pe diferite rezoluții de ecran
 
 ---
 
-# 📈 Rezultate (cont.)
-
-## Funcționalități Implementate
-
-| Modul | Student | Status |
-|----Ce am realizat?
+# 📈 Ce am realizat?
 
 ## Aplicație funcțională cu:
 
@@ -236,46 +168,10 @@ Top 3 features: **temperatură**, **umiditate**, **ora zilei**
 
 ✅ Documentație completă pe GitHub
 ✅ Cod bine organizat și comentat
----
-
-# 🏆 Concluzii
-
-## Realizări Cheie
-
-✅ **Aplicație funcțională** end-to-end
-✅ **ML model performant** cu predicții precise
-✅ **Dashboard profesional** user-friendly
-✅ **Cod de calitate** cu teste și documentație
-✅ **Colaborare eficientă** în echipă
-
-## Impact
-
-- 🌍 **Educațional** - conștientizare calitate aer
-- 🏥 **Sănătate** - ajutor în luarea deciziilor
-- 💻 **Tehnologic** - aplicație practică ML
 
 ---
 
-# 👥 Echipa & Contribuții
-
-## Distribuție Responsabilități
-
-| Student | Rol | Contribuții Cheie |
-|---------|-----|-------------------|
-| **Berciu Antonio** | Data Engineer | OpenAQ/Weather API integration, data pipeline |
-| **Munteanu Radu** | ML Engineer | Random Forest model, hyperparameter tuning |
-| **Roman Silviu** | Frontend Dev | Streamlit dashboard, Plotly visualizations |
-| **Student 4** | QA & Docs | Pytest tests, documentation, GitHub setup |
-
-**Colaborare echilibrată** - fiecare membru a contribuit semnificativ!
-
----
-
-# 📚 Resurse & Referințe
-
-## APIs & Date
-
-- [OpCe urmează?
+# 🔮 Ce urmează?
 
 ## Îmbunătățiri planificate:
 
@@ -291,7 +187,32 @@ Top 3 features: **temperatură**, **umiditate**, **ora zilei**
 
 ## Tehnic
 - Cum să lucrezi cu API-uri și date din exterior
-- 🙏 Mulțumim!
+- Cum să creezi un model de inteligență artificială
+- Cum să faci o aplicație web interactivă
+
+## Lucru în echipă
+- Cum să folosim Git pentru colaborare
+- Importanța documentației clare
+- Cum să rezolvăm probleme împreună
+- Cum să ne împărțim munca eficient
+
+---
+
+# 👥 Echipa noastră
+
+## Cine a făcut ce?
+
+| Student | Responsabilitate |
+|---------|------------------|
+| **Berciu Antonio** | Colectare date de pe internet (API-uri) |
+| **Munteanu Radu** | Modelul de inteligență artificială |
+| **Roman Silviu** | Dashboard-ul web și graficele |
+
+**Toți:** Documentație, teste, rezolvare probleme împreună!
+
+---
+
+# 🙏 Mulțumim!
 
 ## Întrebări?
 
@@ -301,6 +222,8 @@ Top 3 features: **temperatură**, **umiditate**, **ora zilei**
 
 **Echipa 421 B**
 
-Berciu Antonio | Munteanu Radu | Roman Silviue |
+Berciu Antonio | Munteanu Radu | Roman Silviu
 
-**Toți:** Documentație, teste, rezolvare probleme împreună!
+🌍 Împreună pentru un aer mai curat!
+
+Ianuarie 2026
