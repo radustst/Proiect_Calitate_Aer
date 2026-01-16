@@ -19,7 +19,7 @@ Luăm în serios securitatea proiectului nostru. Dacă descoperiți o vulnerabil
 
 În schimb, vă rugăm să:
 
-1. **Trimiteți un email** la: [security@example.com] cu subiectul "Security Vulnerability in Proiect_Calitate_Aer"
+1. **Trimiteți un email** la: radustmunteanu@gmail.com cu subiectul "Security Vulnerability in Proiect_Calitate_Aer"
 2. **Descrieți vulnerabilitatea** în detaliu, inclusiv:
    - Tipul vulnerabilității
    - Pașii de reproducere

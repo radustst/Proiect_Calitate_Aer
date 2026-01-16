@@ -329,9 +329,9 @@ Acest proiect este licențiat sub **MIT License** - vezi fișierul [LICENSE](LIC
 
 Dacă aveți întrebări sau sugestii:
 
-- 📧 Email: [your-email@example.com]
-- 🐛 Issues: [GitHub Issues](https://github.com/your-username/Proiect_Calitate_Aer/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/your-username/Proiect_Calitate_Aer/discussions)
+- 📧 Email: radustmunteanu@gmail.com
+- 🐛 Issues: [GitHub Issues](https://github.com/radustst/Proiect_Calitate_Aer/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/radustst/Proiect_Calitate_Aer/discussions)
 
 ---
 
