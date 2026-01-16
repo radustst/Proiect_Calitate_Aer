@@ -1,0 +1,46 @@
+# Docker Compose configuration for Air Quality Prediction App
+
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: calitate-aer-app
+    ports:
+      - "8501:8501"
+    environment:
+      - OPENWEATHERMAP_API_KEY=${OPENWEATHERMAP_API_KEY}
+      - OPENAQ_API_KEY=${OPENAQ_API_KEY}
+      - APP_ENV=production
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Optional: Add a model training service
+  trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: calitate-aer-trainer
+    command: ["python", "src/model.py"]
+    environment:
+      - OPENWEATHERMAP_API_KEY=${OPENWEATHERMAP_API_KEY}
+      - OPENAQ_API_KEY=${OPENAQ_API_KEY}
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+    profiles:
+      - train
+
+networks:
+  default:
+    name: calitate-aer-network
