@@ -23,7 +23,7 @@
 
 ## 📋 Despre Proiect
 
-Aplicație web interactivă pentru **predicția nivelului PM2.5** (particule fine în aer) în următoarele 24 de ore, utilizând algoritmi de machine learning și date în timp real de la OpenAQ API și OpenWeatherMap.
+Aplicație web interactivă pentru **predicția nivelului PM2.5** (particule fine în aer) în următoarele 24 de ore, utilizând algoritmi de machine learning și date reale de la Open-Meteo Air Quality API (Copernicus CAMS) și Open-Meteo Weather API.
 
 ### 🎯 Scop
 
@@ -31,7 +31,7 @@ Să ofere informații precise despre calitatea aerului pentru a ajuta cetățeni
 
 ### 🔬 Metodologie
 
-- **Colectare Date**: Date PM2.5 din OpenAQ API și date meteo din OpenWeatherMap
+- **Colectare Date**: Date PM2.5 reale din Open-Meteo Air Quality API (Copernicus CAMS) și date meteo reale din Open-Meteo
 - **Model ML**: Random Forest Regressor cu 9 features
 - **Predicție**: Forecast pentru următoarele 24 de ore
 - **Vizualizare**: Dashboard interactiv Streamlit cu grafice Plotly
@@ -70,7 +70,7 @@ Să ofere informații precise despre calitatea aerului pentru a ajuta cetățeni
 | **Backend** | Python 3.8+, pandas, NumPy |
 | **Machine Learning** | scikit-learn, Random Forest |
 | **Frontend** | Streamlit, Plotly |
-| **APIs** | OpenAQ, OpenWeatherMap |
+| **APIs** | Open-Meteo Air Quality (CAMS), Open-Meteo Weather, Open-Meteo Geocoding |
 | **Testing** | pytest |
 | **Version Control** | Git, GitHub |
 
@@ -124,13 +124,7 @@ copy .env.example .env
 cp .env.example .env
 ```
 
-Editați fișierul `.env` și adăugați cheia API:
-
-```env
-WEATHER_API_KEY=your_openweathermap_api_key_here
-```
-
-> 🔑 **Obținere API Key**: Înregistrați-vă gratuit pe [OpenWeatherMap](https://openweathermap.org/api) pentru a obține o cheie API.
+> 🔑 **Nu este necesară nicio cheie API.** Toate datele vin de la [Open-Meteo](https://open-meteo.com/), gratuit. Fișierul `.env` este opțional și permite schimbarea orașului implicit.
 
 ## 💻 Utilizare
 
@@ -158,8 +152,8 @@ python src/data_collection.py
 ```
 
 Această comandă:
-- Colectează date PM2.5 din OpenAQ API (ultimele 30 zile)
-- Adaugă date meteo corespunzătoare
+- Colectează date PM2.5 reale din Open-Meteo Air Quality API (ultimele 90 zile)
+- Adaugă datele meteo reale din aceleași ore (Open-Meteo)
 - Salvează dataset-ul în `data/training_data.csv`
 
 #### 2️⃣ Antrenare Model
@@ -318,8 +312,8 @@ Acest proiect este licențiat sub **MIT License** - vezi fișierul [LICENSE](LIC
 
 ## 🙏 Mulțumiri
 
-- **OpenAQ** pentru API-ul gratuit de date PM2.5
-- **OpenWeatherMap** pentru date meteo
+- **Open-Meteo** pentru API-urile gratuite de calitate a aerului, meteo și geocoding
+- **Copernicus Atmosphere Monitoring Service (CAMS)** pentru datele PM2.5
 - **Streamlit** pentru framework-ul de vizualizare
 - **scikit-learn** pentru biblioteca de machine learning
 
