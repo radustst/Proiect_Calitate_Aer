@@ -118,8 +118,7 @@ flake8 src/ tests/
 
 Contactați echipa:
 - Berciu Antonio - Data Collection
-- Munteanu Radu - ML Model
+- Munteanu Radu - ML Model, Documentation & Testing
 - Roman Silviu - Dashboard
-- Student 4 - Documentation
 
 Mulțumim pentru contribuție! 🎉

@@ -370,9 +370,8 @@ def main():
         st.markdown("""
         ### 👥 Echipa
         - **Berciu Antonio**: Colectare date (OpenAQ, Weather API)
-        - **Munteanu Radu**: Model de predicție (Random Forest)
+        - **Munteanu Radu**: Model de predicție (Random Forest), documentare și testare
         - **Roman Silviu**: Dashboard și vizualizări (Streamlit)
-        - **Documentation & Testing**: Documentare și testare
         
         ### 🔗 Resurse
         - [Open-Meteo Air Quality API](https://open-meteo.com/en/docs/air-quality-api)

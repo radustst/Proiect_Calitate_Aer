@@ -205,6 +205,5 @@ Pentru contribuții la proiect:
 
 Pentru întrebări sau probleme:
 - Berciu Antonio: colectare date
-- Munteanu Radu: model predicție
+- Munteanu Radu: model predicție, documentare și testare
 - Roman Silviu: dashboard
-- Student 4: documentare
