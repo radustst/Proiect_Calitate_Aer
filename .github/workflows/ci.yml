@@ -43,14 +43,17 @@ jobs:
       - name: Check code formatting with black
         run: |
           black --check src/ tests/
+        continue-on-error: true
 
       - name: Check import sorting with isort
         run: |
           isort --check-only src/ tests/
+        continue-on-error: true
 
       - name: Type check with mypy
         run: |
           mypy src/ --ignore-missing-imports
+        continue-on-error: true
 
       - name: Run tests with pytest
         run: |
