@@ -29,14 +29,11 @@ pip install -r requirements.txt
 copy .env.example .env
 ```
 
-#### 4.2. Obținere API Key OpenWeatherMap
-1. Accesați [https://openweathermap.org/api](https://openweathermap.org/api)
-2. Creați un cont gratuit
-3. Generați un API key
-4. Editați `.env` și adăugați cheia:
-   ```
-   WEATHER_API_KEY=vostra_cheie_aici
-   ```
+#### 4.2. API-uri folosite (fără cheie API)
+Aplicația folosește API-urile gratuite Open-Meteo, care nu necesită cont sau cheie:
+- **PM2.5**: [Open-Meteo Air Quality API](https://open-meteo.com/en/docs/air-quality-api) (date Copernicus CAMS, ultimele 92 de zile)
+- **Meteo**: [Open-Meteo Weather API](https://open-meteo.com/en/docs) (istoric, curent și prognoză)
+- **Coordonate oraș**: [Open-Meteo Geocoding API](https://open-meteo.com/en/docs/geocoding-api)
 
 ## Utilizare Aplicație
 
@@ -208,6 +205,5 @@ Pentru contribuții la proiect:
 
 Pentru întrebări sau probleme:
 - Berciu Antonio: colectare date
-- Munteanu Radu: model predicție
+- Munteanu Radu: model predicție, documentare și testare
 - Roman Silviu: dashboard
-- Student 4: documentare

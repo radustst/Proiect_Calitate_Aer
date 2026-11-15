@@ -1,6 +1,6 @@
 """
 Teste unitare pentru modulul de predicție.
-Student 4: Documentare + Testare
+Munteanu Radu: Documentare + Testare
 """
 
 import pytest
@@ -103,7 +103,7 @@ class TestPM25Predictor:
             'clouds': 50.0
         }
         
-        varied_weather = predictor._simulate_weather_variation(base_weather, 12)
+        varied_weather = predictor._simulate_weather_variation(base_weather, 6)
         
         assert varied_weather is not None
         assert 'temperature' in varied_weather

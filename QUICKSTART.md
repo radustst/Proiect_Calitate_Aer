@@ -14,9 +14,8 @@ venv\Scripts\activate
 # 3. Instalare dependențe
 pip install -r requirements.txt
 
-# 4. Configurare .env
+# 4. Configurare .env (opțional - nu e nevoie de cheie API)
 copy .env.example .env
-# Editați .env și adăugați API key de pe openweathermap.org
 
 # 5. Colectare date
 python src/data_collection.py
@@ -38,8 +37,7 @@ pytest tests/ -v
 
 ## Echipa
 - Berciu Antonio - Data Collection
-- Munteanu Radu - ML Model
+- Munteanu Radu - ML Model, Documentation & Testing
 - Roman Silviu - Dashboard
-- Student 4 - Documentation & Testing
 
 Pentru detalii complete, vezi [README.md](README.md)

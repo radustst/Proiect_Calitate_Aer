@@ -1,6 +1,6 @@
 """
 Teste unitare pentru modulul de colectare date.
-Student 4: Documentare + Testare
+Munteanu Radu: Documentare + Testare
 """
 
 import pytest

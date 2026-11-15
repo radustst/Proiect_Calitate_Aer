@@ -179,8 +179,8 @@ def main():
         **Tehnologii:**
         - Streamlit
         - scikit-learn
-        - OpenAQ API
-        - OpenWeatherMap
+        - Open-Meteo Air Quality API (CAMS)
+        - Open-Meteo Weather API
         """)
     
     # Tabs principale
@@ -201,13 +201,14 @@ def main():
                         # Inițializează predictor și collector
                         predictor = PM25Predictor()
                         predictor.load_model()
-                        collector = DataCollector()
+                        collector = DataCollector(city=city, country=country)
                         
-                        # Obține date meteo curente
+                        # Obține date meteo curente și prognoza meteo reală pe 24h
                         current_weather = collector.get_weather_data(datetime.now())
+                        weather_forecast = collector.get_weather_forecast(hours=24)
                         
                         # Generează predicții
-                        predictions_df = predictor.predict_next_24h(current_weather)
+                        predictions_df = predictor.predict_next_24h(current_weather, weather_forecast)
                         
                         # Salvează în session state
                         st.session_state['predictions'] = predictions_df
@@ -277,11 +278,12 @@ def main():
         if st.button("📥 Încarcă Date Istorice"):
             with st.spinner("Se colectează date..."):
                 try:
-                    collector = DataCollector()
+                    collector = DataCollector(city=city, country=country)
                     historical_df = collector.get_air_quality_data(days=days)
                     
                     st.session_state['historical_data'] = historical_df
-                    st.success(f"✅ {len(historical_df)} înregistrări încărcate")
+                    st.success(f"✅ {len(historical_df)} înregistrări încărcate "
+                               f"({collector.city}, sursă: {collector.last_source})")
                     
                 except Exception as e:
                     st.error(f"❌ Eroare: {str(e)}")
@@ -342,7 +344,7 @@ def main():
         utilizând date meteo și algoritmi de machine learning.
         
         ### 🔬 Metodologie
-        - **Date**: OpenAQ API pentru PM2.5, OpenWeatherMap pentru meteo
+        - **Date**: Open-Meteo Air Quality API (Copernicus CAMS) pentru PM2.5, Open-Meteo pentru meteo
         - **Model**: Random Forest Regressor (scikit-learn)
         - **Features**: temperatură, umiditate, presiune, vânt, ora zilei
         
@@ -368,13 +370,13 @@ def main():
         st.markdown("""
         ### 👥 Echipa
         - **Berciu Antonio**: Colectare date (OpenAQ, Weather API)
-        - **Munteanu Radu**: Model de predicție (Random Forest)
+        - **Munteanu Radu**: Model de predicție (Random Forest), documentare și testare
         - **Roman Silviu**: Dashboard și vizualizări (Streamlit)
-        - **Documentation & Testing**: Documentare și testare
         
         ### 🔗 Resurse
-        - [OpenAQ API](https://openaq.org/)
-        - [OpenWeatherMap API](https://openweathermap.org/api)
+        - [Open-Meteo Air Quality API](https://open-meteo.com/en/docs/air-quality-api)
+        - [Open-Meteo Weather API](https://open-meteo.com/en/docs)
+        - [Copernicus CAMS](https://atmosphere.copernicus.eu/)
         - [EPA Air Quality Index](https://www.airnow.gov/aqi/)
         """)
 
