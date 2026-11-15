@@ -1,6 +1,6 @@
 """
 Teste de integrare pentru workflow complet.
-Student 4: Documentare + Testare
+Munteanu Radu: Documentare + Testare
 """
 
 import pytest

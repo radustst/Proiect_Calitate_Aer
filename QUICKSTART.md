@@ -37,8 +37,7 @@ pytest tests/ -v
 
 ## Echipa
 - Berciu Antonio - Data Collection
-- Munteanu Radu - ML Model
+- Munteanu Radu - ML Model, Documentation & Testing
 - Roman Silviu - Dashboard
-- Student 4 - Documentation & Testing
 
 Pentru detalii complete, vezi [README.md](README.md)
