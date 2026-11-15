@@ -240,14 +240,17 @@ class PM25Predictor:
             self.load_model()
         
         predictions = []
-        current_time = datetime.now()
-        
+        current_time = datetime.now().replace(minute=0, second=0, microsecond=0)
+
         for hour_offset in range(24):
             future_time = current_time + timedelta(hours=hour_offset)
-            
-            # Folosește prognoza meteo dacă este disponibilă
+
+            # Folosește prognoza meteo reală dacă este disponibilă
             if weather_forecast and hour_offset < len(weather_forecast):
-                weather = weather_forecast[hour_offset]
+                weather = dict(weather_forecast[hour_offset])
+                # Ora din prognoză (în fusul orar al orașului) are prioritate
+                if weather.get('timestamp') is not None:
+                    future_time = weather.pop('timestamp')
             else:
                 # Simulează variații meteo
                 weather = self._simulate_weather_variation(current_weather, hour_offset)
