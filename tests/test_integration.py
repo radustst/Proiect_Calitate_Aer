@@ -42,7 +42,7 @@ class TestIntegration:
             
             # Adaugă features temporale
             current_weather['hour'] = pd.Timestamp.now().hour
-            current_weather['day_of_week'] = pd.Timestamp.now().dayofweek
+            current_weather['day_of_week'] = pd.Timestamp.now().day_of_week
             current_weather['month'] = pd.Timestamp.now().month
             
             # Prezice

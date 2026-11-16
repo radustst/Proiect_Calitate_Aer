@@ -388,7 +388,7 @@ class DataCollector:
 
         # Adaugă features temporale
         combined_df['hour'] = combined_df['timestamp'].dt.hour
-        combined_df['day_of_week'] = combined_df['timestamp'].dt.dayofweek
+        combined_df['day_of_week'] = combined_df['timestamp'].dt.day_of_week
         combined_df['month'] = combined_df['timestamp'].dt.month
 
         # Salvează dataset
