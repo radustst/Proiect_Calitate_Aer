@@ -23,6 +23,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.data_collection import DataCollector
 from src.model import PM25Predictor
 
+# Toate căile (data/, models/) sunt relative la rădăcina proiectului
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 
 # Configurare pagină
 st.set_page_config(
@@ -31,6 +34,21 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+@st.cache_resource(show_spinner="Prima pornire: se descarcă datele reale și se antrenează modelul (~1 minut)...")
+def ensure_model_trained() -> bool:
+    """
+    Antrenează automat modelul dacă nu există (ex: la prima pornire pe Streamlit Cloud).
+    Local, dacă modelul a fost deja antrenat cu `python src/model.py`, nu face nimic.
+    """
+    predictor = PM25Predictor()
+    if os.path.exists(predictor.model_path):
+        return True
+    collector = DataCollector()
+    collector.create_training_dataset(days=90)
+    predictor.train()
+    return True
+
 
 # CSS personalizat
 st.markdown("""
@@ -206,6 +224,7 @@ def main():
                 with st.spinner("Se încarcă modelul și se generează predicții..."):
                     try:
                         # Inițializează predictor și collector
+                        ensure_model_trained()
                         predictor = PM25Predictor()
                         predictor.load_model()
                         collector = DataCollector(city=city, country=country)
