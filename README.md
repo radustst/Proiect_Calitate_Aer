@@ -4,12 +4,14 @@
 
 ### Predicții PM2.5 pentru următoarele 24 de ore bazate pe Machine Learning
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
+[![Demo live](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://air-quality-psl.streamlit.app/)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.29.0-FF4B4B.svg)](https://streamlit.io/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3.2-orange.svg)](https://scikit-learn.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+[🚀 Demo live](https://air-quality-psl.streamlit.app/) •
 [Despre](#-despre-proiect) •
 [Funcționalități](#-funcționalități) •
 [Instalare](#-instalare) •
@@ -18,6 +20,16 @@
 [Echipa](#-echipa)
 
 </div>
+
+---
+
+## 🚀 Demo live
+
+**👉 [air-quality-psl.streamlit.app](https://air-quality-psl.streamlit.app/)**
+
+Aplicația rulează online, fără instalare: apăsați „🚀 Generează Predicție” pentru predicția PM2.5 pe următoarele 24 de ore, pe baza datelor reale de calitate a aerului și a prognozei meteo.
+
+> ℹ️ Dacă aplicația nu a fost folosită de câteva zile, Streamlit o pune în pauză. Apăsați „Yes, get this app back up!” și porniți-o din nou în aproximativ un minut. Prima predicție poate dura ~1 minut (descărcare date + antrenare model).
 
 ---
 
