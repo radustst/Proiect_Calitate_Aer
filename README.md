@@ -295,9 +295,9 @@ Proiect_Calitate_Aer/
 
 | Student | Rol | Responsabilități |
 |---------|-----|------------------|
-| **Berciu Antonio** | Data Engineer | 📡 Colectare date PM2.5 & meteo, integrare API-uri |
-| **Munteanu Radu** | ML Engineer, QA & Documentation | 🤖 Dezvoltare model Random Forest, evaluare performanță, 📝 testare, documentație tehnică |
-| **Roman Silviu** | Frontend Developer | 🎨 Dashboard Streamlit, vizualizări interactive |
+| **[Berciu Antonio](https://github.com/berciu4)** | Data Engineer | 📡 Colectare date PM2.5 & meteo, integrare API-uri |
+| **[Munteanu Radu](https://github.com/radustst)** | ML Engineer, QA & Documentation | 🤖 Dezvoltare model Random Forest, evaluare performanță, 📝 testare, documentație tehnică |
+| **[Roman Silviu](https://github.com/silviuroman-netizen)** | Frontend Developer | 🎨 Dashboard Streamlit, vizualizări interactive |
 
 ---
 
