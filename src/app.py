@@ -74,6 +74,13 @@ def get_aqi_category(pm25: float) -> tuple:
         return "Periculoasă", "#7e0023"
 
 
+def get_text_color(background: str) -> str:
+    """Alege text închis pe fundaluri deschise și text alb pe fundaluri închise."""
+    r, g, b = (int(background.lstrip('#')[i:i + 2], 16) for i in (0, 2, 4))
+    luminance = 0.299 * r + 0.587 * g + 0.114 * b
+    return "#1a1a1a" if luminance > 128 else "#ffffff"
+
+
 def plot_24h_prediction(predictions_df: pd.DataFrame):
     """Creează grafic pentru predicția pe 24h."""
     fig = go.Figure()
@@ -247,7 +254,7 @@ def main():
             with col1:
                 st.metric("PM2.5 Curent", f"{current_pm25:.1f} μg/m³", 
                          delta=None, delta_color="off")
-                st.markdown(f'<div style="background-color:{color}; padding:5px; border-radius:5px; text-align:center; color:white; font-weight:bold;">{category}</div>', 
+                st.markdown(f'<div style="background-color:{color}; padding:5px; border-radius:5px; text-align:center; color:{get_text_color(color)}; font-weight:bold;">{category}</div>', 
                            unsafe_allow_html=True)
             
             with col2:
@@ -362,7 +369,7 @@ def main():
         
         for pm_range, category, color, description in categories:
             st.markdown(f"""
-            <div style="background-color:{color}; padding:10px; margin:5px 0; border-radius:5px; color:white;">
+            <div style="background-color:{color}; padding:10px; margin:5px 0; border-radius:5px; color:{get_text_color(color)};">
                 <strong>{pm_range} μg/m³</strong> - {category}: {description}
             </div>
             """, unsafe_allow_html=True)
